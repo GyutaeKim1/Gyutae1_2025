@@ -1,14 +1,92 @@
 ---
-layout: post 
-title: Course Descriptions
-description: An overview of Computer Science pathway at Del Norte High School
-author: John Mortensen, Vivian Ni, Bria Gilliam
+layout: base
+title: Gyutae Home 
+description: Home Page
+author: Gyutae Kim
 image: /images/mario_animation.png
 hide: true
-menu: nav/home.html
 ---
 
-<!-- Liquid:  statements-->
+## welcome 
+
+<style>
+
+.typewriter h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  font-family: Monospace;
+  border-right: .015em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.015em; /* Adjust as needed */
+  animation: 
+    typing 15.0s steps(30, end) forwards,
+    blink-caret 1s step-end infinite;
+  animation-delay: 0ms;
+  animation-fill-mode: both;
+  color: #000000
+}
+
+/* The typing effect */
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  25%, 50%, 75% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: white; }
+}
+
+h2 {
+    color: #FFFFEE;
+}
+
+h1 {
+  color: #FFFFFF
+}
+
+h1:hover {
+  font-size: 32px;
+}
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+      document.querySelector("body").classList.add("loaded");
+  }, 2000)
+});
+</script>
+
+<!-- <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const words = ["Welcome", "to", "Srijan's", "Blog"];
+  let wordIndex = 0;
+  
+  function updateWord() {
+    const titleElement = document.querySelector(".typewriter h1");
+    titleElement.textContent = words[wordIndex];
+    wordIndex = (wordIndex + 1) % words.length;
+  }
+
+  setInterval(updateWord, 1); // Change word every 3.5 seconds
+});
+</script> -->
+
+<div class="typewriter">
+    <h1>Good Morning or night, Welcome to Gyutae's Blog</h1>
+</div>
+
+<br>
+
+<!-- Liquid:  statements -->
 
 <!--- Concatenation of site URL to frontmatter image  --->
 {% assign sprite_file = site.baseurl | append: page.image %}
@@ -97,19 +175,9 @@ menu: nav/home.html
       this.animate(this.obj["Walk"], 3);
     }
 
-    startWalkingL() {
-      this.stopAnimate();
-      this.animate(this.obj["WalkL"], -3);
-    }
-
     startRunning() {
       this.stopAnimate();
       this.animate(this.obj["Run1"], 6);
-    }
-
-    startRunningL() {
-      this.stopAnimate();
-      this.animate(this.obj["Run1L"], -6);
     }
 
     startPuffing() {
@@ -117,19 +185,9 @@ menu: nav/home.html
       this.animate(this.obj["Puff"], 0);
     }
 
-    startPuffingL() {
-      this.stopAnimate();
-      this.animate(this.obj["PuffL"], 0);
-    }
-
     startCheering() {
       this.stopAnimate();
       this.animate(this.obj["Cheer"], 0);
-    }
-
-    startCheeringL() {
-      this.stopAnimate();
-      this.animate(this.obj["CheerL"], 0);
     }
 
     startFlipping() {
@@ -137,19 +195,9 @@ menu: nav/home.html
       this.animate(this.obj["Flip"], 0);
     }
 
-    startFlippingL() {
-      this.stopAnimate();
-      this.animate(this.obj["FlipL"], 0);
-    }
-
     startResting() {
       this.stopAnimate();
       this.animate(this.obj["Rest"], 0);
-    }
-
-    startRestingL() {
-      this.stopAnimate();
-      this.animate(this.obj["RestL"], 0);
     }
 
     stopAnimate() {
@@ -161,64 +209,42 @@ menu: nav/home.html
 
   ////////// event control /////////
 
-// Add event listener for keydown events
   window.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowRight" || event.key === "d" || event.key === "D") {
-          event.preventDefault();
-          if (event.repeat) {
-              mario.startCheering();
-          } else {
-              if (mario.currentSpeed === 0) {
-                  mario.startWalking();
-              } else if (mario.currentSpeed === 3) {
-                  mario.startRunning();
-              }
-          }
-      } else if (event.key === "ArrowLeft" || event.key === "a" || event.key === "A") {
-          event.preventDefault();
-          if (event.repeat) {
-              mario.startCheeringL();
-          } else {
-              if (mario.currentSpeed === 0) {
-                  mario.startWalkingL();
-              } else if (mario.currentSpeed === 3) {
-                  mario.startRunningL();
-              }
-          }
-      } else if (event.key === "ArrowUp" || event.key === "w" || event.key === "W") {
-          event.preventDefault();
-          mario.startFlipping();
-      } else if (event.key === "ArrowDown" || event.key === "s" || event.key === "S") {
-          event.preventDefault();
-          mario.startResting();
-      }
-  });
-  
-  // Add event listener for touchstart events
-  window.addEventListener("touchstart", (event) => {
-      event.preventDefault(); // prevent default browser action
-      const touchX = event.touches[0].clientX;
-      const screenWidth = window.innerWidth;
-      const centerThreshold = screenWidth * 0.1; // 10% of the screen width on either side of the center
-
-      if (touchX > screenWidth / 2 + centerThreshold) {
-          // move right
-          if (mario.currentSpeed === 0) {
-              mario.startWalking();
-          } else if (mario.currentSpeed === 3) {
-              mario.startRunning();
-          }
-      } else if (touchX < screenWidth / 2 - centerThreshold) {
-          // move left
-          if (mario.currentSpeed === 0) {
-              mario.startWalkingL();
-          } else if (mario.currentSpeed === 3) {
-              mario.startRunningL();
-          }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      if (event.repeat) {
+        mario.startCheering();
       } else {
-          // touch near the center, make Mario puff
-          mario.startPuffing();
+        if (mario.currentSpeed === 0) {
+          mario.startWalking();
+        } else if (mario.currentSpeed === 3) {
+          mario.startRunning();
+        }
       }
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      if (event.repeat) {
+        mario.stopAnimate();
+      } else {
+        mario.startPuffing();
+      }
+    }
+  });
+
+  //touch events that enable animations
+  window.addEventListener("touchstart", (event) => {
+    event.preventDefault(); // prevent default browser action
+    if (event.touches[0].clientX > window.innerWidth / 2) {
+      // move right
+      if (currentSpeed === 0) { // if at rest, go to walking
+        mario.startWalking();
+      } else if (currentSpeed === 3) { // if walking, go to running
+        mario.startRunning();
+      }
+    } else {
+      // move left
+      mario.startPuffing();
+    }
   });
 
   //stop animation on window blur
@@ -242,100 +268,304 @@ menu: nav/home.html
 
 </script>
 
-## Investing in Your Technical Future
+<img src="images/Cristiano-Ronaldo.avif" alt="Cristiano Ronaldo" style="border: 5px solid yellow; padding: 10px; border-radius: 5px;">
 
-Computer Science is the Wild Card for all Majors and Careers.
+## Notebook Submenu
 
-> Explore the Computer Science Pathway at Del Norte High School and invest in your technical skills.
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Animations and Links</title>
+    <style>
+        /* CSS for fade-in effect */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+        /* Button hover effect */
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition: transform 0.2s, background-color 0.3s;
+            cursor: pointer;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            background-color: #45a049; /* Darker green */
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            animation: fadeIn 0.5s; /* Fade-in animation */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        /* Styles for links */
+        .links {
+            text-align: left;
+            margin: 20px;
+        }
+    </style>
+</head>
 
-<div style="display: flex; align-items: flex-start;">
-
-<table>
-<tr>
-  <td>
-    <div style="flex: 65%; text-align: left;">
-      <p>All Del Norte CompSci classes are designed to provide real-world development experiences.</p>
-      <ul>
-        <li> Project talks between teachers and students</li>
-        <li> Teaching through Tech talks (versus lectures) </li>
-        <li> Peer collaboration using GitHub Issues and Kanban boards </li>
-        <li> Critical thinking while performing iterative coding </li>
-        <li> Creativity and designs in projects, as well as code </li>
-      </ul>
+<body>
+    <div class="fade-in">This will fade in when the page loads!</div>
+    <button id="modalBtn" class="button">Open Submenu</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Notebooks</h2>
+            <ul>
+                <li><a href="{{site.baseurl}}/plans/sprint1">Planning Document</a></li>
+                <li><a href="{{site.baseurl}}/jscell/sprint1">JavaScript Notebook</a></li>
+                <li><a href="{{site.baseurl}}/about/sprint1">About Page</a></li>
+                <li><a href="{{site.baseurl}}/2024/09/16/jupyter_IPYNB_2_.html">Jupyter Notebook</a></li>
+            </ul>
+            <h2>Games</h2>
+            <ul>
+                <li><a href="{{site.baseurl}}/cookieclicker/sprint1">Cookie Clicker</a></li>
+                <li><a href="{{site.baseurl}}/tictactoe/sprint1">Tic-Tac-Toe</a></li>
+                <li><a href="{{site.baseurl}}/snake/sprint1">Snake Game</a></li>
+                <li><a href="{{site.baseurl}}/rps/sprint1">Rock Paper Scissors</a></li>
+            </ul>
+           <h2>Other Stuff</h2>
+            <ul>
+                <li><a href="{{site.baseurl}}/binarycalculator/sprint1">Binary Calculator</a></li>
+                <li><a href="{{site.baseurl}}/calculator/sprint1">Calculator</a></li>
+            </ul>
+        </div>
     </div>
-  </td>
-  <td>
-    <div style="flex: 35%; text-align: center;">
-      <img src="{{site.baseurl}}/images/course-brag/qr.png" alt="QR Code" style="width: 100%; max-width: 300px; height: auto; margin-left: 10px;">
-    </div>
-  </td>
-</tr>
-</table>
+    <script>
+        // JavaScript for fade-in effect
+        window.onload = function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                el.classList.add('visible');
+            });
+        };
+        // JavaScript for modal functionality
+        const modal = document.getElementById("myModal");
+        const btn = document.getElementById("modalBtn");
+        const span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
+</body>
+</html>
+
+
+
+<link rel="stylesheet" href="/assets/css/custom.css">
+
+
+## Cristiano Ronaldo Chasing the World Cup Animation
+
+<span style="color: green;">Use the W, A, S, and D keys to move Cristiano Ronaldo and catch the World Cup as it moves randomly!</span>
+
+<div id="gameArea" style="width: 100%; height: 500px; position: relative; background-color: #f0f0f0; border: 2px solid #000; overflow: hidden;">
+  <div id="ronaldo" style="position: absolute; width: 100px; height: 100px; background-image: url('images/ronaldo.jpg'); background-size: cover;"></div>
+  <div id="worldcup" style="position: absolute; width: 100px; height: 100px; background-image: url('images/worldcup.jpg'); background-size: cover;"></div>
 </div>
 
-## Project-based learning
+<p>Score: <span id="score">0</span></p>
 
-Teacher created projects, project requirements, technical materials, and support.
+<script>
+  const ronaldo = document.getElementById('ronaldo');
+  const worldcup = document.getElementById('worldcup');
+  const gameArea = document.getElementById('gameArea');
+  const scoreElement = document.getElementById('score');
+  let ronaldoPosition = { x: 0, y: 0 };
+  let worldcupPosition = { x: 300, y: 200 }; // Starting position for the World Cup
+  let score = 0;
 
-> Grades are based on projects, time invested, engagement, learned concepts, participation with peers, and live reviews between student(s) and teacher.
+  // Function to move Ronaldo based on W, A, S, D keys
+  function moveRonaldo(dx, dy) {
+    ronaldoPosition.x += dx;
+    ronaldoPosition.y += dy;
 
-- Performing Agile/Scrum development
-- Coding, frontend, backend, devops, version control, and algorithmic thinking
-- Creativity, research, design, data structures, and utilizing ChatGPT
-- Performing teamwork, team communication and collaboration, peer reviews/grading
-- Focus on technical communications through project presentations and student-led teaching
+    // Ensure Ronaldo stays within bounds
+    ronaldoPosition.x = Math.max(0, Math.min(ronaldoPosition.x, gameArea.clientWidth - ronaldo.clientWidth));
+    ronaldoPosition.y = Math.max(0, Math.min(ronaldoPosition.y, gameArea.clientHeight - ronaldo.clientHeight));
 
-> Classroom work time is 3-4 hours per week. Homework expectations are approximately 2-3 hours per week. Homework is scheduled over a Sprint, approximately 2-4 weeks. Time lost is extremely hard to make up as all materials are cumulative.
+    ronaldo.style.left = ronaldoPosition.x + 'px';
+    ronaldo.style.top = ronaldoPosition.y + 'px';
 
-![ccr]({{site.baseurl}}/images/course-brag/ccr.png)
+    checkCollision();
+  }
 
-## Computer Science and Software Engineering (CSSE) 1,2; Grades 9-12
+  // Function to move the World Cup randomly
+  function moveWorldCupRandomly() {
+    worldcupPosition.x = Math.random() * (gameArea.clientWidth - worldcup.clientWidth);
+    worldcupPosition.y = Math.random() * (gameArea.clientHeight - worldcup.clientHeight);
 
-CSSE 1,2 prepares students for the AP Computer Science pathway. This course focuses on teaching the JavaScript programming language, object-oriented programming and inheritance, and developing algorithmic thinking skills.
+    worldcup.style.left = worldcupPosition.x + 'px';
+    worldcup.style.top = worldcupPosition.y + 'px';
+  }
 
-> Through game development projects, students will engage in engineering skills, learn fundamentals of programming, work with data structures, and foster collaboration skills with their peers. Tech talks will be conducted by teachers to introduce concepts, provide guidance on tools, and support ideas to establish development requirements. By performing development and exploration, this course aims to raise students' awareness of the tremendous capabilities of computers and software engineering skills across various fields.
+  // Function to check for collision between Ronaldo and the World Cup
+  function checkCollision() {
+    const ronaldoRect = ronaldo.getBoundingClientRect();
+    const worldcupRect = worldcup.getBoundingClientRect();
 
-- Prerequisites: None
-- Meets UC/CSU G requirements
-- CSSE 1,2 receives Articulated College Credit to Mira Costa CC CS 111: "Introduction to Computer Science". Mira Costa CC requires and provides free registration to receive UC college credit.
+    if (!(ronaldoRect.right < worldcupRect.left ||
+          ronaldoRect.left > worldcupRect.right ||
+          ronaldoRect.bottom < worldcupRect.top ||
+          ronaldoRect.top > worldcupRect.bottom)) {
+      score++;
+      scoreElement.textContent = score;
+      moveWorldCupRandomly();
+    }
+  }
 
-![csse]({{site.baseurl}}/images/course-brag/csse.png)
+  // Move the World Cup every 1 second (1000 milliseconds)
+  setInterval(moveWorldCupRandomly, 1000);
 
-## Computer Science Principles 1,2 and Data Structures 1; Grades 10-12
+  // Listen for W, A, S, D key presses to move Ronaldo
+  document.addEventListener('keydown', function(event) {
+    switch (event.key) {
+      case 'w':
+        moveRonaldo(0, -10);
+        break;
+      case 's':
+        moveRonaldo(0, 10);
+        break;
+      case 'a':
+        moveRonaldo(-10, 0);
+        break;
+      case 'd':
+        moveRonaldo(10, 0);
+        break;
+    }
+  });
+</script>
 
-Computer Science Principles is designed as a college-level introduction to computer science. The AP Computer Science Principles curriculum is integrated into this course, covering creative development, data, algorithms and programming, computer systems and networks, and the impact of computing.
 
-> Students will work on individual and team projects to build computer systems, write algorithms, analyze for correctness, and engage in discussions about solutions. The course will establish fluency in Python, utilize prerequisite knowledge in JavaScript, and develop fluency in Linux.
 
-- Prerequisites:
-  - Rising 10th graders: Computer Science and Software Engineering (CSSE)
-  - Rising 11th-12th graders: GPA above 3.5 and expectation of experience with JavaScript or other programming languages
-- Meets UC/CSU G requirements, also an alternate for 3rd year D requirement
 
-> Data Structures 1 serves as the third trimester for the Computer Science Principles course. It is the capstone for non-computer science majors/minors and prepares other students to complete the PUSD computer science pathway. Data Structures 1 focuses on creating computer programs independently and includes AP review and AP project time. The course utilizes JavaScript and Python languages to instruct on the imperative and object-oriented programming paradigms. Topics covered include graphical user interfaces, input and output, lists, dictionaries, databases, searching, sorting, and algorithm analysis.
 
-- Prerequisites: AP Computer Science Principles 1,2
-- Meets UC/CSU G requirements
+<style>
+  /* Sparkling animation */
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+  }
 
-![csp]({{site.baseurl}}/images/course-brag/csp24.png)
+  .sparkling {
+    position: relative;
+    display: inline-block;
+    background-color: #ffcc00;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
+    animation: sparkle 1.5s infinite ease-in-out;
+  }
 
-## Computer Science "A" 1,2 and Data Structures 2; Grades 11-12
+  .sparkling:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7);
+    animation: sparkle 1s infinite ease-in-out;
+  }
 
-AP Computer Science A is an in-depth course that focuses on programming, algorithms, and data structures. The AP Computer Science 'A' curriculum is integrated into this course, which covers the Java programming language and topics such as fundamentals of programming, using objects, writing classes, arrays, array lists, 2D arrays, inheritance, and recursion. 
+  .sparkling:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7);
+    animation: sparkle 1.5s infinite ease-in-out reverse;
+  }
+</style>
 
-> Students will gain understanding through analysis, coding, and individual and team projects. The course will establish fluency in Java, utilize JavaScript, and work with Linux.
+<audio id="siuSound" src="sound/siuuu.mp3"></audio>
 
-- Prerequisites: a rising 11th or 12th grader
-  - AP Computer Science Principles 1,2 and Data Structures 1
-  - Or a teacher recommendation with an expectation of understanding JavaScript, OOP, Linux, and Data Structures; foundation in team projects, awareness of agile methodology and GitHub source control.
-- Meets UC/CSU G requirements, also an alternate for 4th year C requirement
+<div class="sparkling">
+  <img src="images/Cristiano-Ronaldo.avif" alt="Cristiano Ronaldo" style="width: 200px;" onclick="playSiuSound()">
+</div>
 
-> Data Structures 2 serves as the third trimester for the Computer Science "A" course and is the capstone for the Del Norte Computer Science Pathway. It is designed as a companion to AP Computer Science 'A'. This course focuses on basic data structures, algorithms, and includes AP preparation for College Board multiple-choice questions (MCQs) and free-response questions (FRQs). The course utilizes the JavaScript and Java languages to instruct on object-oriented programming paradigm programming and design. Topics covered include searching, sorting, hashing, algorithm analysis, collections, lists, stacks, queues, trees, sets, dictionaries, and graphs. The course concludes with team-oriented project-based learning and a final project.
+<script>
+  function playSiuSound() {
+    const audio = document.getElementById('siuSound');
+    audio.play();
+  }
+</script>
 
-- Prerequisites: AP Computer Science ‘A’ 1,2
-- Meets UC/CSU G requirements
-- Data Structures 1,2 receives Articulated College Credit to Mira Costa CC for "CS 113: Basic Data Structures and Algorithms". Mira Costa CC requires and provides free registration to receive UC college credit.
+---------------------------------
 
-![csa]({{site.baseurl}}/images/course-brag/csa24.png)
+| Week Date   | Weekly Plan |
+|-------------|-------------|
+| **9/30 ~ 10/4**  | [Weekly Plan]({{site.baseurl}}/weeklyplan1/sprint2) | 
+| **10/7 ~ 10/11** | [Weekly Plan]({{site.baseurl}}/weeklyplan2/sprint2) | 
+
 
